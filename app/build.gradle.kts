@@ -69,6 +69,9 @@ android {
         implementation(libs.okhttp)
         implementation(libs.logging.interceptor)
 
+        implementation(libs.androidx.navigation.compose)
+        implementation(libs.androidx.navigation.runtime.ktx)
+
 
         testImplementation(libs.junit)
         androidTestImplementation(libs.androidx.junit)
