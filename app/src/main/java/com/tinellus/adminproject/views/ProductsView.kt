@@ -112,8 +112,8 @@ fun ProductsView(navController: NavController) {
 
                     }
 //            Spacer(modifier = Modifier.height(28.dp))
-                    Button(onClick = { navController.navigate("home") }) {
-                        Text(text = "Home", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                    Button(onClick = { navController.navigate("products_register") }) {
+                        Text(text = "Novo Produto", fontWeight = FontWeight.Bold, fontSize = 16.sp)
                     }
                 }
 

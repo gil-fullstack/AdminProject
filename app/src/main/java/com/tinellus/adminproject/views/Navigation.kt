@@ -18,6 +18,9 @@ fun Navigation(){
         composable(route = Screen.ProductsView.route) {
             ProductsView(navController)
         }
+        composable(route = Screen.ProductRegistrationScreen.route) {
+            ProductRegistrationScreen(navController)
+        }
 
     }
 }
