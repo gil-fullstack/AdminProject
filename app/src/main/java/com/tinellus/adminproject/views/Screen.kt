@@ -1,6 +1,6 @@
 package com.tinellus.adminproject.views
 
-sealed class Screen(val route: String) {
+sealed class Screen(val route: String, val title: String? = null) {
     object Home : Screen("home")
     object LoginView : Screen("login")
     object ProductsView : Screen("products")

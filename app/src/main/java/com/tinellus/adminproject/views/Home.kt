@@ -1,9 +1,16 @@
 package com.tinellus.adminproject.views
 
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Send
@@ -15,6 +22,7 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MenuDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -25,6 +33,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
@@ -37,8 +46,9 @@ import com.tinellus.adminproject.R
 @Composable
 fun Home(navController: NavController) {
     var expanded by remember { mutableStateOf(false) }
-    fun onBackNavClicked() {
-        navController.navigate("login")
+    val items = listOf("Home", "Products", "Login")
+    fun onBackNavClicked(page: String) {
+        navController.navigate(page)
     }
     Scaffold(
         topBar = {
@@ -68,29 +78,32 @@ fun Home(navController: NavController) {
                     DropdownMenu(
                         expanded = expanded,
                         onDismissRequest = { expanded = false },
-                        modifier = Modifier.heightIn(max = 160.dp)
+                        modifier = Modifier
+                            .heightIn(max = 170.dp)
+                            .widthIn(max = 240.dp)
                     ) {
-                        DropdownMenuItem(
-                            text = { Text("Home") },
-                            onClick = {
-                                expanded = false
-                                onBackNavClicked()
-                            },
-                        )
-                        DropdownMenuItem(
-                            text = { Text("Products") },
-                            onClick = {
-                                expanded = false
-                                onBackNavClicked()
-                            },
-                        )
-                        DropdownMenuItem(
-                            text = { Text("Login") },
-                            onClick = {
-                                expanded = false
-                                onBackNavClicked()
-                            },
-                        )
+                        items.forEach { item ->
+                            DropdownMenuItem(
+                                text = { Text(item, fontWeight = FontWeight.Bold, fontSize = 18.sp, color = Color.White) },
+                                onClick = {
+                                    expanded = false
+                                    onBackNavClicked(item.lowercase())
+                                },
+                                modifier = Modifier.background(color = colorResource(id = R.color.dark_blue))
+                            )
+                            Canvas(modifier = Modifier
+                                .fillMaxWidth()
+                                .height(1.dp)) {
+                                drawLine(
+                                    color = Color.LightGray,
+                                    start = Offset(0f, 0f),
+                                    end = Offset(size.width, 0f),
+                                    strokeWidth = 1f // Adjust stroke width as needed
+                                )
+                            }
+
+                        }
+
                     }
                 }
 
