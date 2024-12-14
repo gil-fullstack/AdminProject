@@ -79,7 +79,7 @@ fun Home(navController: NavController) {
                         expanded = expanded,
                         onDismissRequest = { expanded = false },
                         modifier = Modifier
-                            .heightIn(max = 170.dp)
+                            .heightIn(max = 160.dp)
                             .widthIn(max = 240.dp)
                     ) {
                         items.forEach { item ->
