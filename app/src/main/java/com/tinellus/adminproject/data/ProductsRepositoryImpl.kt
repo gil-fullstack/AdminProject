@@ -3,6 +3,7 @@ package com.tinellus.adminproject.data
 import android.annotation.SuppressLint
 import android.net.http.HttpException
 import com.tinellus.adminproject.data.model.Product
+import com.tinellus.adminproject.views.productsRequest
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.io.IOException
@@ -29,6 +30,18 @@ class ProductsRepositoryImpl(
                 return@flow
             }
             emit(Result.Success(productsFromApi.products))
+        }
+    }
+    override suspend fun createProduct(productsRequest: productsRequest){
+
+        try {
+            api.createProduct(productsRequest)
+        } catch (e: IOException) {
+            e.printStackTrace()
+            throw Exception("Error creating product")
+        } catch (@SuppressLint("NewApi") e: HttpException) {
+            e.printStackTrace()
+            throw Exception("Error creating product")
         }
     }
 }

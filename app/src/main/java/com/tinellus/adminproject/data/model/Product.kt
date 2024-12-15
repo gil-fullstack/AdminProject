@@ -1,8 +1,10 @@
 package com.tinellus.adminproject.data.model
 
+import com.google.gson.annotations.Expose
+
 data class Product(
-    val id: Int,
-    val name: String,
-    val stock: Int,
-    val price: Double,
+    @Expose val name: String,
+    @Expose val stock: Int,
+    @Expose val price: Double,
+    val id: Int? = null
 )
